@@ -447,6 +447,14 @@
     }
 }
 
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+	if ([self.delegate respondsToSelector:@selector(contactPickerTextFieldShouldReturn:)])
+		[self.delegate contactPickerTextFieldShouldReturn:textField];
+	
+	return YES;
+}
+
 #pragma mark - THContactBubbleDelegate Functions
 
 - (void)contactBubbleWasSelected:(THContactBubble *)contactBubble {
@@ -508,6 +516,11 @@
 
 - (UIKeyboardAppearance)keyboardAppearance {
     return self.textView.keyboardAppearance;
+}
+
+- (void)setKeyboardType:(UIKeyboardType)keyboardType
+{
+	self.textView.keyboardType = keyboardType;
 }
 
 @end
